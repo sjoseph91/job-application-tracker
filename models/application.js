@@ -30,6 +30,10 @@ const applicationSchema = new Schema({
     contactedSomeoneAtCompany: {
         type: Boolean,
         default: false
+    },
+    responseReceived: {
+        type: Boolean,
+        default: false
     }
 
 });
