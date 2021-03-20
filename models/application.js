@@ -34,6 +34,10 @@ const applicationSchema = new Schema({
     responseReceived: {
         type: Boolean,
         default: false
+    }, 
+    comments: {
+        type: String,
+        default: ""
     }
 
 });
