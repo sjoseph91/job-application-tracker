@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import axios from "axios";
-
 export const UserContext = React.createContext();
 const userAxios = axios.create();
 
@@ -19,6 +18,7 @@ export default function UserProvider(props){
 
 
     const [userState, setUserState] = useState(initState);
+    
 
     function signup(credentials){
         axios.post("/auth/signup", credentials)
@@ -41,7 +41,6 @@ export default function UserProvider(props){
             const { user, token } = res.data
             localStorage.setItem("token", token)
             localStorage.setItem("user", JSON.stringify(user))
-            // getUserTodos()
             setUserState(prevUserState => ({
               ...prevUserState,
               user,
@@ -74,6 +73,7 @@ export default function UserProvider(props){
           errMsg: ""
         }))
     }
+    
 
     return (
         <UserContext.Provider

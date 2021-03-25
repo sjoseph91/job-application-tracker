@@ -15,18 +15,31 @@ export default function ApplicationProvider(props){
     const [applications, setApplications] = useState([]);
 
     function getApplications(){
-        userAxios.get("/api/application")
-            .then(res => console.log(res))
+        userAxios.get("/api/application/user")
+            .then(res => {
+                setApplications(res.data);
+            })
             .catch(err => console.log(err));
+    }
+
+    function addApplication(application){
+        userAxios.post("/api/application", application)
+            .then(res => {
+                setApplications(prevApplications => ([...prevApplications, res.data]))
+            })
+            .catch(err => console.log(err))
+
     }
 
 
 
 
     return (
-        <ApplicationContext.Provider value={
-            getApplications
-        }>
+        <ApplicationContext.Provider value={{
+            getApplications,
+            addApplication,
+            applications
+        }}>
             {props.children}
         </ApplicationContext.Provider>
     )

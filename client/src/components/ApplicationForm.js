@@ -12,7 +12,7 @@ const initInputs = {
 
 export default function ApplicationForm(props){
   const [inputs, setInputs] = useState(initInputs)
-//   const { addIssue } = props
+  const { submit } = props
 
   function handleChange(e){
     let {name, value, type} = e.target
@@ -22,7 +22,6 @@ export default function ApplicationForm(props){
             ...prevInputs,
             [name]: !prevInputs[name]
           }))
-        console.log(name, inputs[name])
         return;
     }
     
@@ -31,14 +30,15 @@ export default function ApplicationForm(props){
       ...prevInputs,
       [name]: value
     }))
-    console.log(inputs[name])
+    
   }
 
   function handleSubmit(e){
     e.preventDefault()
-    // const parcel = {...inputs};
-    // parcel.authorName= JSON.parse(localStorage.getItem("user")).username
-    // addIssue(parcel)
+    const parcel = {...inputs};
+    // parcel.user= JSON.parse(localStorage.getItem("user"))._id
+    // console.log(parcel);
+    submit(parcel)
     setInputs(initInputs)
   }
 
