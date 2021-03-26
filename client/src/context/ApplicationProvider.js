@@ -30,6 +30,17 @@ export default function ApplicationProvider(props){
             .catch(err => console.log(err))
 
     }
+    function deleteApplication(id){
+        userAxios.delete(`/api/application/${id}`)
+            .then(res => {
+                setApplications(prevApplications => {
+                    return prevApplications.filter(each => (
+                        each._id !== id
+                    ))
+                })
+            })
+            .catch(err => console.log(err));
+    }
 
 
 
@@ -38,6 +49,7 @@ export default function ApplicationProvider(props){
         <ApplicationContext.Provider value={{
             getApplications,
             addApplication,
+            deleteApplication,
             applications
         }}>
             {props.children}
