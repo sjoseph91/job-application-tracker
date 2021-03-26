@@ -6,13 +6,11 @@ import HomePage from "./components/HomePage.js";
 import Datapage from "./components/DataPage.js";
 import ProtectedRoute from "./components/ProtectedRoute"
 import { UserContext } from './context/UserProvider.js'
-import ApplicationProvider from "./context/ApplicationProvider.js";
 import "./App.css"
 
 function App(){
     const { token, logout } = useContext(UserContext);
     return (
-        <ApplicationProvider>
             <div className="app">
                 { token && <Navbar logout={ logout }/> }
                 <Switch>
@@ -35,7 +33,6 @@ function App(){
                    
                 </Switch>
             </div>
-        </ApplicationProvider>
         
     )
 }

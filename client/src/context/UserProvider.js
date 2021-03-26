@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import axios from "axios";
+import { ApplicationContext } from "./ApplicationProvider.js";
 export const UserContext = React.createContext();
 const userAxios = axios.create();
 
@@ -15,10 +16,8 @@ export default function UserProvider(props){
         token: localStorage.getItem("token") || "",
         errMsg: ""
     }
-
-
+    const { getApplications} = useContext(ApplicationContext);
     const [userState, setUserState] = useState(initState);
-    
 
     function signup(credentials){
         axios.post("/auth/signup", credentials)
@@ -41,6 +40,7 @@ export default function UserProvider(props){
             const { user, token } = res.data
             localStorage.setItem("token", token)
             localStorage.setItem("user", JSON.stringify(user))
+            getApplications();
             setUserState(prevUserState => ({
               ...prevUserState,
               user,

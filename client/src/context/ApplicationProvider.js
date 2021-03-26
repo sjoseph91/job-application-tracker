@@ -13,6 +13,9 @@ userAxios.interceptors.request.use(config => {
 
 export default function ApplicationProvider(props){
     const [applications, setApplications] = useState([]);
+    const [ responseRate, setResponseRate ] = useState(0);
+    const [ coverLetterRate, setCoverLetterRate ] = useState(0);
+    const [ linkedinRate, setLinkedinrate ] = useState(0);
 
     function getApplications(){
         userAxios.get("/api/application/user")
@@ -55,6 +58,28 @@ export default function ApplicationProvider(props){
             })
             .catch(err => console.log(err));
     }
+    function getResponseRate(){
+        userAxios.get("/api/application/data/responseReceived")
+            .then(res => {
+                setResponseRate(res.data/applications.length)
+            })
+            .catch(err => console.log(err));
+    }
+    function getCoverLetterRate(){
+        userAxios.get("/api/application/data/hasCoverLetter")
+            .then(res => {
+                setCoverLetterRate(res.data/applications.length)
+            })
+            .catch(err => console.log(err));
+    }
+    function getLinkedinrate(){
+        userAxios.get('api/application/data/contactedSomeoneAtCompany')
+            .then(res => {
+                setLinkedinrate(res.data/applications.length)
+            })
+            .catch(err => console.log(err));
+    }
+    
 
 
 
@@ -65,7 +90,13 @@ export default function ApplicationProvider(props){
             addApplication,
             deleteApplication,
             updateApplication,
-            applications
+            getResponseRate,
+            getCoverLetterRate,
+            coverLetterRate,
+            getLinkedinrate,
+            linkedinRate,
+            applications, 
+            responseRate
         }}>
             {props.children}
         </ApplicationContext.Provider>

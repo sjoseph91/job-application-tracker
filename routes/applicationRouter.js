@@ -70,6 +70,17 @@ applicationRouter.put("/:applicationId", (req, res, next) => {
         }
     )
 })
+//get data
+applicationRouter.get("/data/:type", (req, res, next) => {
+    const type = req.params.type;
+    Application.find({user: req.user._id, [type]: true}, (err, apps) => {
+        if (err){
+            res.status(500);
+            return next(err);
+        }
+        return res.status(200).send(apps.length.toString())
+    })
+})
 
 
 module.exports = applicationRouter;
