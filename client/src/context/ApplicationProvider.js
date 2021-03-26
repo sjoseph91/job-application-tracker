@@ -41,6 +41,20 @@ export default function ApplicationProvider(props){
             })
             .catch(err => console.log(err));
     }
+    function updateApplication(id, updateObj){
+        userAxios.put(`/api/application/${id}`, updateObj)
+            .then(res => {
+                setApplications(prevApplications => (
+                    prevApplications.map(each => {
+                        if(each._id === id){
+                            return res.data
+                        }
+                        return each;
+                    })
+                ))
+            })
+            .catch(err => console.log(err));
+    }
 
 
 
@@ -50,6 +64,7 @@ export default function ApplicationProvider(props){
             getApplications,
             addApplication,
             deleteApplication,
+            updateApplication,
             applications
         }}>
             {props.children}
