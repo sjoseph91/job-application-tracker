@@ -17,7 +17,7 @@ function HomePage(){
     }, [])
     return (
         <div className="homepage">
-            <h1>Pending applications</h1>
+            <h1>Application Log</h1>
             <ApplicationForm submit={addApplication}/>
             <div className="applicationList">
                 <ApplicationList 
