@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import ApplicationForm from "./ApplicationForm.js";
+import {motion} from "framer-motion";
 import { ApplicationContext } from "../context/ApplicationProvider.js"
 import  ApplicationList from "./ApplicationList.js";
 
@@ -16,7 +17,12 @@ function HomePage(){
         return getApplications()
     }, [])
     return (
-        <div className="homepage">
+        <motion.div 
+        className="homepage"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1}}
+        exit={{ opacity: 0}}
+        >
             <h1>Application Log</h1>
             <ApplicationForm submit={addApplication}/>
             <div className="breaker">
@@ -32,7 +38,7 @@ function HomePage(){
             
 
 
-        </div>
+        </motion.div>
     )
 }
 

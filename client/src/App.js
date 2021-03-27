@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { Switch, Route, Redirect } from "react-router-dom";
+import {AnimatePresence } from 'framer-motion';
 import Navbar from "./components/Navbar";
 import Auth from "./components/Auth";
 import HomePage from "./components/HomePage.js";
@@ -13,25 +14,29 @@ function App(){
     return (
             <div className="app">
                 { token && <Navbar logout={ logout }/> }
-                <Switch>
-                    <Route 
-                    exact path="/" 
-                    render={()=> token ? <Redirect to="/homepage"/> : <Auth />}
-                    />
-                    <ProtectedRoute 
-                    path="/homepage"
-                    component={HomePage}
-                    redirectTo="/"
-                    token={token}
-                    />
-                    <ProtectedRoute 
-                    path="/data"
-                    component={Datapage}
-                    redirectTo="/"
-                    token={token}
-                    />
-                   
-                </Switch>
+                <AnimatePresence>
+                    <Switch>
+                        <Route 
+                        exact path="/" 
+                        render={()=> token ? <Redirect to="/homepage"/> : <Auth />}
+                        />
+                        <ProtectedRoute 
+                        path="/homepage"
+                        component={HomePage}
+                        redirectTo="/"
+                        token={token}
+                        />
+                        <ProtectedRoute 
+                        path="/data"
+                        component={Datapage}
+                        redirectTo="/"
+                        token={token}
+                        />
+                    
+                    </Switch>
+
+                </AnimatePresence>
+                
             </div>
         
     )

@@ -1,4 +1,5 @@
 import React, {useContext, useEffect} from 'react';
+import {motion} from "framer-motion";
 import { ApplicationContext } from "../context/ApplicationProvider.js";
 
 
@@ -18,7 +19,12 @@ function DataPage(){
         return getResponseRate()
     }, [])
     return (
-        <div className="datapage">
+        <motion.div 
+        className="datapage"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1}}
+        exit={{ opacity: 0}}
+        >
             <h1>Data</h1>
             <div className="responseRate">
                 <h2>{(responseRate *100).toFixed(2)} %</h2>
@@ -32,7 +38,7 @@ function DataPage(){
                 <h2>{(linkedinRate * 100).toFixed(2)} %</h2>
                 <h2>Made LinkedIn Connection</h2>
             </div>
-        </div>
+        </motion.div>
     )
 }
 

@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react'
+import {motion} from "framer-motion";
 import AuthForm from './AuthForm.js'
 import { UserContext } from "../context/UserProvider.js";
 
@@ -34,7 +35,13 @@ export default function Auth(){
   }
 
   return (
-    <div className="auth-container">
+    <motion.div 
+    className="auth-container"
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1}}
+    exit={{ opacity: 0}}
+    
+    >
       <h1>Job Application Tracker</h1>
       { !toggle ?
         <>
@@ -59,6 +66,6 @@ export default function Auth(){
           <p onClick={toggleForm}>Not a member?</p>
         </>
       }
-    </div>
+    </motion.div>
   )
 }
