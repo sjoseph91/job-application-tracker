@@ -12,8 +12,9 @@ export default function ApplicationList(props){
     })
     const applicationComponents = applications.map(application=> {
         let date = new Date(application.createDate)
+        let applicationType = application.responseReceived ? "application priority" : "application";
         return (
-            <div className="application" key={application._id} id={application._id}>
+            <div className={applicationType} key={application._id} id={application._id}>
                 <div className="date">
                     {`Date: ${date.getMonth() + 1} / ${date.getDate()}`}
                 </div>
@@ -24,7 +25,7 @@ export default function ApplicationList(props){
                     {application.companyName}
                 </div>
                 <div className="postingUrl">
-                    {application.postingUrl}
+                    <a title ={application.postingUrl}href={application.postingUrl}>Job Post</a>
                 </div>
                 <div className="coverLetter">
                     Cover Letter: {application.hasCoverLetter ? "Yes": "No"}
@@ -34,17 +35,20 @@ export default function ApplicationList(props){
                 </div>
                 {application.comments? (
                     <textarea 
+                    readOnly
                     className="comments"
                     rows="3"
                     value={application.comments} 
                     />
                 ) : <div></div> }
-                
+                <div className="application-buttons">
+                    <button id="delete-button" onClick={() => deleteApplication(application._id)}>Delete</button>
+                    {application.responseReceived ? "Response Received" : <button 
+                    onClick={() => handleResponseReceived(application._id)}> Response?
+                    </button>}
+                </div>
                    
-                <button id="delete-button" onClick={() => deleteApplication(application._id)}>Delete</button>
-                {application.responseReceived ? "Priority" : <button 
-                onClick={() => handleResponseReceived(application._id)}>Received Response?
-                </button>}
+                
                 
             </div>
         )

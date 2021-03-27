@@ -123,10 +123,12 @@ div.breaker {
 }
 textarea {
     grid-column: 1 / -1;
+    background-color: inherit;
 }
 
 #form button {
     grid-column: 1 / -1;
+    font-size: 20px;
 }
 [type=checkbox] {
     margin-left: 5px;
@@ -143,11 +145,18 @@ textarea {
     margin: auto;
     display: flex;
     flex-direction: row;
+    font-weight: bold;
     justify-content: flex-start;
+    flex-wrap: wrap;
     align-items: center;
     margin-bottom: 10px;
     border-bottom: 1px solid black;
+    background-color: #f0f0f0;
     
+}
+
+.priority {
+    background-color: rgb(255, 223, 255);
 }
 .application > * {
     margin-left: 5px;
@@ -155,13 +164,17 @@ textarea {
     width: 150px;
 
 }
-.postingUrl {
-    overflow: hidden;
+.application a {
+    color: black;
+    text-decoration: underline;
+
 }
+
 .application button {
     padding: 5px 10px;
     color: white;
     border-radius: 10px;
+    width: 150px;
 }
 #delete-button {
     background-color: black;
