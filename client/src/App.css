@@ -164,6 +164,9 @@ textarea {
     width: 150px;
 
 }
+.application textarea {
+    border: none;
+}
 .application a {
     color: black;
     text-decoration: underline;
