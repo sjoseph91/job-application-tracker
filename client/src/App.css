@@ -18,22 +18,25 @@
     background-color:black;
 }
 .navbar a {
-    padding: 5px 10px;
+    padding: 7px 40px;
     color: white;
     border: 1px solid black;
     border-radius: 5px;
     transition: background-color .5s;
 }
-.navbar a:hover {
+.navbar a:hover, .navbar button:hover {
     background-color: grey;
 }
 
 .navbar button {
     color: white;
-    padding: 5px 10px;
+    padding: 7px 40px;
     background-color: black;
     border-radius: 5px;
+    transition: background-color .5s;
+    cursor: pointer;
 }
+
 /* Auth page */
 .auth-container {
     display: flex;
@@ -77,7 +80,7 @@
     border-radius: 10px;
 }
   
-.auth-container > form > button {
+.auth-container > form > button, #log-button {
     margin: 16px 8px;
     color: white;
     font-weight: bold;
@@ -94,11 +97,45 @@
 
 }
 
+#form {
+    padding: 10px;
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(2, minmax(150px, 300px));
+}
+#form input, textarea {
+    padding: 8px;
+    border-radius: 10px;
+}
+
+div.breaker {
+    width: 90%;
+    margin: auto;
+    height: 2px;
+    background-color: black;;
+}
 .applicationList {
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     /* align-items: center; */
+}
+textarea {
+    grid-column: 1 / -1;
+}
+
+#form button {
+    grid-column: 1 / -1;
+}
+[type=checkbox] {
+    margin-left: 5px;
+    padding: 3px;
+}
+
+[type=checkbox]:hover {
+    box-shadow: 2px 3px 4px grey;
+    cursor: pointer;
 }
 
 .application {
@@ -106,17 +143,64 @@
     margin: auto;
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
     justify-content: flex-start;
     align-items: center;
     margin-bottom: 10px;
+    border-bottom: 1px solid black;
     
 }
 .application > * {
     margin-left: 5px;
     margin-top: 5px;
+    width: 150px;
+
 }
+.postingUrl {
+    overflow: hidden;
+}
+.application button {
+    padding: 5px 10px;
+    color: white;
+    border-radius: 10px;
+}
+#delete-button {
+    background-color: black;
+    cursor: pointer;
+}
+.application button:not(#delete-button) {
+    background-color: rgb(92, 0, 92);
+    cursor: pointer;
+}
+
 
 .datapage h1 {
     text-align: center;
+    font-size: 35px;
+
+}
+.datapage {
+    width: 80vw;
+    margin: auto;
+}
+.datapage > * {
+    margin-bottom: 20px;
+}
+.datapage h2 {
+    font-size: 30px;
+}
+
+.responseRate, .letter, .linkedin {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+
+@media only screen and (min-width: 600px){
+    #form {
+        width: 90%;
+        margin: auto;
+        grid-template-columns: repeat(3, minmax(150px, 350px));
+        justify-content: space-evenly;
+    }
 }

@@ -47,7 +47,7 @@ export default function ApplicationForm(props){
      comments
      } = inputs
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} id="form">
       <input 
         type="text" 
         name="jobTitle" 
@@ -72,30 +72,34 @@ export default function ApplicationForm(props){
         value={createDate} 
         onChange={handleChange} 
         placeholder="Application date"/>
-      <label htmlFor="hasCoverLetter">Included Cover Letter/Email?</label>
-      <input 
-        type="checkbox" 
-        name="hasCoverLetter" 
-        value={hasCoverLetter} 
-        onChange={handleChange} 
+      <div>
+        <label htmlFor="hasCoverLetter">Included Cover Letter/Email?</label>
+        <input 
+          type="checkbox" 
+          name="hasCoverLetter" 
+          value={hasCoverLetter} 
+          onChange={handleChange} 
         />
-      <label htmlFor="contactedSomeoneAtCompany">Contacted Someone at Company?</label>
-      <input 
-        type="checkbox" 
-        name="contactedSomeoneAtCompany" 
-        value={contactedSomeoneAtCompany} 
-        onChange={handleChange} 
-        />
+      </div>
+      <div>
+        <label htmlFor="contactedSomeoneAtCompany">Reached out on LinkedIn?</label>
+        <input 
+          type="checkbox" 
+          name="contactedSomeoneAtCompany" 
+          value={contactedSomeoneAtCompany} 
+          onChange={handleChange} 
+          />
+      </div>
+      
       <textarea
         name="comments" 
-        rows="4"
         value={comments} 
         onChange={handleChange} 
         placeholder="Additional Comments">
         
       </textarea>
 
-      <button>Log application</button>
+      <button id="log-button">Log application</button>
     </form>
   )
 }

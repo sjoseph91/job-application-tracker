@@ -19,6 +19,9 @@ function HomePage(){
         <div className="homepage">
             <h1>Application Log</h1>
             <ApplicationForm submit={addApplication}/>
+            <div className="breaker">
+                
+            </div>
             <div className="applicationList">
                 <ApplicationList 
                 applications={applications}

@@ -32,11 +32,17 @@ export default function ApplicationList(props){
                 <div className="outreach">
                     Reached out to Company: {application.contactedSomeoneAtCompany ? "Yes": "No"}
                 </div>
-                <div className="comments">
-                    Comments: {application.comments}
-                </div>
-                <button onClick={() => deleteApplication(application._id)}>X</button>
-                {application.responseReceived ? "Response Received!" : <button 
+                {application.comments? (
+                    <textarea 
+                    className="comments"
+                    rows="3"
+                    value={application.comments} 
+                    />
+                ) : <div></div> }
+                
+                   
+                <button id="delete-button" onClick={() => deleteApplication(application._id)}>Delete</button>
+                {application.responseReceived ? "Priority" : <button 
                 onClick={() => handleResponseReceived(application._id)}>Received Response?
                 </button>}
                 
@@ -46,7 +52,6 @@ export default function ApplicationList(props){
     })
     return (
         <div className="application-list">
-            <h2>Completed Applications</h2>
             {applicationComponents}
         </div>
         
